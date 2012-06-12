@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+require 'mayuki/version.rb'
+
+help = "Usage: mayuki [options]"
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = help
+  
+  opts.on("--preview [PORT]", "--server [PORT]", "Start web server (default port 4000)") do |port|
+    options[:server] = true
+    if port.nil?
+      options[:server_port] = 4000
+    else
+      options[:server_port] = port
+    end
+  end
+  
+  opts.on("--version", "Display current version") do
+    puts "Mayuki " + Mayuki::VERSION
+    exit 0
+  end
+end.parse!
+
+require 'mayuki'
+dir_o = Mayuki::mayuki
+
+if options[:server]
+  require 'webrick'
+  include WEBrick
+  
+  mime_types = WEBrick::HTTPUtils::DefaultMimeTypes
+  mime_types.store("js", "application/javascript")
+  
+  s = HTTPServer.new(:Port => options[:server_port], :MimeTypes => mime_types)
+  s.mount("/", HTTPServlet::FileHandler, dir_o)
+  t = Thread.new { s.start }
+  
+  trap("INT") { s.shutdown }
+  t.join()
+end
