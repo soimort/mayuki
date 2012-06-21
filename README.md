@@ -195,4 +195,4 @@ Mayuki is released under the [MIT license](http://www.opensource.org/licenses/mi
 
 
 
-_Last Revision Date: 2012-06-13, by [Mort Yao](http://www.soimort.org/)_
+_Last Revision: 2012-06-21, by [Mort Yao](http://www.soimort.org/)_
