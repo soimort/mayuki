@@ -175,7 +175,7 @@ Default configuration:
 
 Suppose you have a `test.rb` source file in the same directory with the Markdown file. Then include a line in the Markdown text:
     
-    {{ "test.rb" | src: "ruby" }}
+\{\{ "test.rb" | src: "ruby" \}\}
 
 This way you "import" the syntax-highlighted source code into this wiki page, using Ruby lexer.
 
@@ -183,7 +183,7 @@ The string parameter specifies the name of lexer. It's the same as the short nam
 
 Without specifying a language lexer, you may just use:
     
-    {{ "test.rb" | code }}
+\{\{ "test.rb" | code \}\}
 
 And let Pygments decide itself which lexer to use by filename patterns.
 
