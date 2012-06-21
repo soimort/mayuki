@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.description = "Mayuki is a minimalist Markdown/YAML-based static wiki generator."
   s.license     = "MIT"
   
-  s.homepage    = "https://github.com/soimort/mayuki"
+  s.homepage    = "http://www.soimort.org/mayuki/"
   s.has_rdoc    = false
   
   s.authors     = ["Mort Yao"]
