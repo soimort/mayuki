@@ -82,7 +82,7 @@ Write some basic configuration in a file named `_config.yml`: we want all Liquid
     _render: [liquid, markdown]
     _export: [html_full]
 
-Now it's time to write some `index.html`... but wait, remember Mayuki generates this for us; what we need to write is a `index.md`. Let's just put a line of text "Chapter 1" with a link to page `ch01` on it! (Cannot remember the Markdown syntax for that? Check [here](http://en.wikipedia.org/wiki/Markdown).)
+Now it's time to write some `index.html`... but wait, remember Mayuki generates this for us; what we need to write is a `index.md`. Let's just put a line of text "Chapter 1" with a link to page `ch01` on it! (Cannot remember the Markdown syntax for that? Check it [here](http://en.wikipedia.org/wiki/Markdown).)
     
     $ cat > index.md
     [Chapter 1](ch01)
@@ -101,7 +101,7 @@ OK, now run Mayuki in the main directory and start a web server to see what it l
 
 Hopefully no error is prompted; open your browser and visit:
     
-    http://localhost:4000/
+[http://localhost:4000/](http://localhost:4000/)
 
 Congratulations! You are running your very minimalist personal wiki now. Want to change something or create a new page? Do it in your favorite text editor. Want to share your knowledge with the world? Upload the wiki folder via FTP or rsync, or just push it onto a Git server hosting web pages! ([GitHub](http://pages.github.com/) or [Bitbucket](http://pages.bitbucket.org/))
 
@@ -195,4 +195,4 @@ Mayuki is released under the [MIT license](http://www.opensource.org/licenses/mi
 
 
 
-_Last Revision: 2012-06-21, by [Mort Yao](http://www.soimort.org/)_
+_Last Revision: 2012-06-22, by [Mort Yao](http://www.soimort.org/)_
