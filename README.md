@@ -46,6 +46,7 @@ Install Pygments:
 or (on Arch Linux):
     
     $ sudo pacman -S python-pygments
+    $ sudo easy_install-3.2 Pygments
 
 __Note:__ `pygmentize` executable must exist in `$PATH` (or `%PATH%` in Windows).
 
