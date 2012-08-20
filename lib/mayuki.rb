@@ -71,8 +71,7 @@ module Mayuki
         conf_infile = Hash[conf]
         
         # Markdown / HTML file (parsing)
-        if [".markdown", ".md",
-          ".htm", ".html"
+        if [".markdown", ".md"
           ].index(File.extname(f))
           
           # Read text and metadata
