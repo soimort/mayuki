@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Mayuki by soimort</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Mayuki</h1>
+        <p>A minimalist Markdown/YAML-based static wiki generator</p>
+
+        <p class="view"><a href="https://github.com/soimort/mayuki">View the Project on GitHub <small>soimort/mayuki</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/soimort/mayuki/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/soimort/mayuki/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/soimort/mayuki">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Mayuki</h1>
+
+<p><strong>Mayuki</strong> is a minimalist <strong>Markdown/YAML</strong>-based static <strong>wiki</strong> generator.</p>
+
+<p>It takes over a folder and converts wiki pages (written in <a href="http://en.wikipedia.org/wiki/Markdown">Markdown</a> syntax) into HTML format suitable for publishing on a website or embedding into other web templates.</p>
+
+<p>Mayuki is originally designed as a naive script to generate static HTML pages from a directory of Markdown texts on filesystem, being able to "include" code snippets for syntax highlighting by file name rather than putting the whole code in the Markdown file, and finally send to another folder to be used directly by <a href="http://jekyllrb.com/">Jekyll</a>, the static blogging system. It can also be used standalone, by generating static HTMLs for hosting on any web server without extra configuration.</p>
+
+<p>Mayuki can be used as an HTML generator for:</p>
+
+<ul>
+<li>Personal wikis, technical blogs and notes</li>
+<li>Documentation and technical manuals</li>
+</ul><p>that can be hosted on any website.</p>
+
+<p>Features:</p>
+
+<ul>
+<li><p><a href="https://github.com/rtomayko/rdiscount">RDiscount</a> Markdown parsing engine.</p></li>
+<li><p><a href="http://liquidmarkup.org/">Liquid</a> templating engine.</p></li>
+<li><p><a href="http://pygments.org/">Pygments</a>-powered syntax highlighting.</p></li>
+<li><p>Built-in HTTP server for previewing generated HTML pages.</p></li>
+<li>
+<p>Wiki pages are based on the directory tree structure and located in the local filesystem rather than databases. Being convenient to manage for lightweight static sites, the whole wiki history can be easily version-controlled by a <a href="http://en.wikipedia.org/wiki/Revision_control">VCS</a> like <a href="http://git-scm.com">Git</a>).<br>
+There are several wiki alternatives sharing a similar philosophy, such as:</p>
+
+<ul>
+<li>
+<a href="http://ikiwiki.info/">ikiwiki</a> (in Perl)</li>
+<li>
+<a href="http://markdoc.org/">Markdoc</a> (in Python)</li>
+</ul>
+<p>Mayuki is written in Ruby and intended to be a minimalist wiki system (with little or no configuration).</p>
+</li>
+</ul><h2>System Requirements</h2>
+
+<h3>Dependencies</h3>
+
+<ul>
+<li>
+<a href="http://www.ruby-lang.org/en/">Ruby</a> &gt;= 1.9</li>
+<li>
+<a href="http://pygments.org/">Pygments</a> &gt;= 1.5 (a syntax highlighting engine written in Python)</li>
+</ul><p>Install Pygments:</p>
+
+<pre><code>$ sudo easy_install Pygments
+</code></pre>
+
+<p>or (on Arch Linux):</p>
+
+<pre><code>$ sudo pacman -S python-pygments
+$ sudo easy_install-3.2 Pygments
+</code></pre>
+
+<p><strong>Note:</strong> <code>pygmentize</code> executable must exist in <code>$PATH</code> (or <code>%PATH%</code> in Windows).</p>
+
+<h2>Installation</h2>
+
+<ul>
+<li>
+<p><strong>Method 1:</strong> Install the latest release from Gem (<a href="https://rubygems.org/gems/mayuki">https://rubygems.org/gems/mayuki</a>)</p>
+
+<pre><code>$ gem install mayuki
+</code></pre>
+</li>
+<li>
+<p><strong>Method 2:</strong> Install from Git repo (<a href="https://github.com/soimort/mayuki">https://github.com/soimort/mayuki</a>)</p>
+
+<p>Git and rake are required if you choose to install Mayuki this way.</p>
+
+<pre><code>$ git clone git://github.com/soimort/mayuki.git
+$ cd mayuki
+$ rake install
+</code></pre>
+</li>
+</ul><h2>Getting Started</h2>
+
+<h3>Hello, Mayuki!</h3>
+
+<p>First of all, let's create the "main" directory for our new wiki:</p>
+
+<pre><code>$ mkdir hello_mayuki
+$ cd hello_mayuki/
+</code></pre>
+
+<p>Write some basic configuration in a file named <code>_config.yml</code>: we want all Liquid and Markdown syntax to be parsed, and wish the wiki system could generate full HTML files for us:</p>
+
+<pre><code>$ cat &gt; _config.yml
+_render: [liquid, markdown]
+_export: [html_full]
+</code></pre>
+
+<p>Now it's time to write some <code>index.html</code>... but wait, remember Mayuki generates this for us; what we need to write is a <code>index.md</code>. Let's just put a line of text "Chapter 1" with a link to page <code>ch01</code> on it! (Cannot remember the Markdown syntax for that? Check it <a href="http://en.wikipedia.org/wiki/Markdown">here</a>.)</p>
+
+<pre><code>$ cat &gt; index.md
+[Chapter 1](ch01)
+</code></pre>
+
+<p>So what's in the page "<code>ch01</code>"? Create a <code>ch01</code> folder under the main directory with another <code>index.md</code>, like this: (yep, there should be a link "HOME" back to "<code>..</code>", the main index)</p>
+
+<pre><code>$ mkdir ch01
+$ cat &gt; ch01/index.md
+Hello, Mayuki!
+
+[HOME](..)
+</code></pre>
+
+<p>OK, now run Mayuki in the main directory and start a web server to see what it looks like.</p>
+
+<pre><code>$ mayuki --server
+</code></pre>
+
+<p>Hopefully no error is prompted; open your browser and visit:</p>
+
+<p><a href="http://localhost:4000/">http://localhost:4000/</a></p>
+
+<p>Congratulations! You are running your very minimalist personal wiki now. Want to change something or create a new page? Do it in your favorite text editor. Want to share your knowledge with the world? Upload the wiki folder via FTP or rsync, or just push it onto a Git server hosting web pages! (<a href="http://pages.github.com/">GitHub</a> or <a href="http://pages.bitbucket.org/">Bitbucket</a>)</p>
+
+<p>You may want to learn some more Markdown syntax <a href="http://daringfireball.net/projects/markdown/basics">here</a>.</p>
+
+<h3>Command Line Usage</h3>
+
+<p>Render the current directory:</p>
+
+<pre><code>$ mayuki
+</code></pre>
+
+<p>Render the current directory and start a web server on port 8080 (if no parameter is followed, port 4000 will be used):</p>
+
+<pre><code>$ mayuki --server 8080
+</code></pre>
+
+<p>The current directory is considered as the "main" directory of the wiki.</p>
+
+<p>Show the version number of Mayuki:</p>
+
+<pre><code>$ mayuki --version
+</code></pre>
+
+<h3>API Usage</h3>
+
+<p>Render the current directory and return the output path:</p>
+
+<pre><code>require 'mayuki'
+output_dir = Mayuki::mayuki
+</code></pre>
+
+<p>Or render a specified directory:</p>
+
+<pre><code>Mayuki::mayuki("mysite/")
+</code></pre>
+
+<p>The processed directory is considered as the "main" directory of the wiki.</p>
+
+<h3>Directory Processing</h3>
+
+<p>Each directory in the "main" wiki directory will be processed recursively.</p>
+
+<p>For the directory to be processed:</p>
+
+<ul>
+<li>All files and directories whose name starts with the "_" character are ignored (will be neither rendered nor exported).</li>
+<li>All files whose name ends with "<code>.md</code>", "<code>.markdown</code>", "<code>.htm</code>" or "<code>.html</code>" are rendered and exported to the output path.</li>
+<li>Everything else is left untouched and exported to the output path.</li>
+</ul><h3>_config.yml</h3>
+
+<p>Each directory may contain one or more <code>_conf*.yaml</code>, <code>_conf*.yml</code> configuration file.</p>
+
+<p>If no configuration file matched those name patterns is found, the global configuration (the one used in the "main" directory) will be applied; If no global configuration is found in the main directory, the default configuration below will be used.</p>
+
+<p>Default configuration:</p>
+
+<ul>
+<li>
+<p>_output: ./_output</p>
+
+<ul>
+<li>The output path. Must be writable for current user!</li>
+</ul>
+</li>
+<li>
+<p>_render: [liquid]</p>
+
+<ul>
+<li>The render level. Use <em>[liquid, markdown]</em> to generate valid HTML.</li>
+<li>Use <em>[liquid]</em> (default) to parse Liquid only (will preserve Markdown syntax).</li>
+</ul>
+</li>
+<li>
+<p>_export: []</p>
+
+<ul>
+<li>The export level. Use <em>[html]</em> to export files of HTML snippets.</li>
+<li>Use <em>[html_article]</em> to export files of HTML &lt;article&gt; elements.</li>
+<li>Use <em>[html_full]</em> to export full HTML5 documents.</li>
+<li>Using <em>[]</em> (default) will preserve YAML front matters (if any). You may use this setting if you want to put the wiki into a site layout template with <a href="http://jekyllrb.com/">Jekyll</a>.</li>
+</ul>
+</li>
+<li>
+<p>_pygments: false</p>
+
+<ul>
+<li>Enable Pygments to generate stylesheets for syntax highlighting.</li>
+<li>Set to <em>true</em> if syntax highlighting is used in this directory.</li>
+</ul>
+</li>
+</ul><h3>Syntax Highlighting</h3>
+
+<p>Suppose you have a <code>test.rb</code> source file in the same directory with the Markdown file. Then include a line in the Markdown text:</p>
+
+<p>{{ "test.rb" | src: "ruby" }}</p>
+
+<p>This way you "import" the syntax-highlighted source code into this wiki page, using Ruby lexer.</p>
+
+<p>The string parameter specifies the name of lexer. It's the same as the short name used in Pygments (Check <a href="http://pygments.org/docs/lexers">here</a> for the complete list).</p>
+
+<p>Without specifying a language lexer, you may just use:</p>
+
+<p>{{ "test.rb" | code }}</p>
+
+<p>And let Pygments decide itself which lexer to use by filename patterns.</p>
+
+<h2>Licensing</h2>
+
+<p>Mayuki is released under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>. See the <code>LICENSE</code> file for details.</p>
+
+<p><em>Last Revision: 2012-06-22, by <a href="http://www.soimort.org/">Mort Yao</a></em></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/soimort">soimort</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
