@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   
   s.add_runtime_dependency("liquid", "~> 2.3")
   s.add_runtime_dependency("rdiscount", "~> 2.0")
-  s.add_development_dependency("rake", "~> 0.9")
+  s.add_development_dependency("rake", ">= 0.9")
   s.requirements = ["Pygments >= 1.5", "Git >= 1.7"]
   
   s.executables = ["mayuki"]
