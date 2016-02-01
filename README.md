@@ -1,3 +1,5 @@
+**[OBSOLETE] As of 1 Feb 2016, this project is unmaintained. I'm working on a new project [soimort/kyoka](https://github.com/soimort/kyoka) which will (hopefully) replace Mayuki.**
+
 # Mayuki
 
 __Mayuki__ is a minimalist __Markdown/YAML__-based static __wiki__ generator.
@@ -23,11 +25,11 @@ Features:
 
 * Built-in HTTP server for previewing generated HTML pages.
 
-* Wiki pages are based on the directory tree structure and located in the local filesystem rather than databases. Being convenient to manage for lightweight static sites, the whole wiki history can be easily version-controlled by a [VCS](http://en.wikipedia.org/wiki/Revision_control) like [Git](http://git-scm.com)).  
+* Wiki pages are based on the directory tree structure and located in the local filesystem rather than databases. Being convenient to manage for lightweight static sites, the whole wiki history can be easily version-controlled by a [VCS](http://en.wikipedia.org/wiki/Revision_control) like [Git](http://git-scm.com)).
     There are several wiki alternatives sharing a similar philosophy, such as:
     * [ikiwiki](http://ikiwiki.info/) (in Perl)
     * [Markdoc](http://markdoc.org/) (in Python)
-    
+
     Mayuki is written in Ruby and intended to be a minimalist wiki system (with little or no configuration).
 
 
@@ -40,11 +42,11 @@ Features:
 * [Pygments](http://pygments.org/) >= 1.5 (a syntax highlighting engine written in Python)
 
 Install Pygments:
-    
+
     $ sudo easy_install Pygments
 
 or (on Arch Linux):
-    
+
     $ sudo pacman -S python-pygments
     $ sudo easy_install-3.2 Pygments
 
@@ -55,13 +57,13 @@ __Note:__ `pygmentize` executable must exist in `$PATH` (or `%PATH%` in Windows)
 ## Installation
 
 * __Method 1:__ Install the latest release from Gem ([https://rubygems.org/gems/mayuki](https://rubygems.org/gems/mayuki))
-        
+
         $ gem install mayuki
 
 * __Method 2:__ Install from Git repo ([https://github.com/soimort/mayuki](https://github.com/soimort/mayuki))
 
     Git and rake are required if you choose to install Mayuki this way.
-        
+
         $ git clone git://github.com/soimort/mayuki.git
         $ cd mayuki
         $ rake install
@@ -73,35 +75,35 @@ __Note:__ `pygmentize` executable must exist in `$PATH` (or `%PATH%` in Windows)
 ### Hello, Mayuki!
 
 First of all, let's create the "main" directory for our new wiki:
-    
+
     $ mkdir hello_mayuki
     $ cd hello_mayuki/
 
 Write some basic configuration in a file named `_config.yml`: we want all Liquid and Markdown syntax to be parsed, and wish the wiki system could generate full HTML files for us:
-    
+
     $ cat > _config.yml
     _render: [liquid, markdown]
     _export: [html_full]
 
 Now it's time to write some `index.html`... but wait, remember Mayuki generates this for us; what we need to write is a `index.md`. Let's just put a line of text "Chapter 1" with a link to page `ch01` on it! (Cannot remember the Markdown syntax for that? Check it [here](http://en.wikipedia.org/wiki/Markdown).)
-    
+
     $ cat > index.md
     [Chapter 1](ch01)
 
 So what's in the page "`ch01`"? Create a `ch01` folder under the main directory with another `index.md`, like this: (yep, there should be a link "HOME" back to "`..`", the main index)
-    
+
     $ mkdir ch01
     $ cat > ch01/index.md
     Hello, Mayuki!
-    
+
     [HOME](..)
 
 OK, now run Mayuki in the main directory and start a web server to see what it looks like.
-    
+
     $ mayuki --server
 
 Hopefully no error is prompted; open your browser and visit:
-    
+
 [http://localhost:4000/](http://localhost:4000/)
 
 Congratulations! You are running your very minimalist personal wiki now. Want to change something or create a new page? Do it in your favorite text editor. Want to share your knowledge with the world? Upload the wiki folder via FTP or rsync, or just push it onto a Git server hosting web pages! ([GitHub](http://pages.github.com/) or [Bitbucket](http://pages.bitbucket.org/))
@@ -111,28 +113,28 @@ You may want to learn some more Markdown syntax [here](http://daringfireball.net
 ### Command Line Usage
 
 Render the current directory:
-    
+
     $ mayuki
 
 Render the current directory and start a web server on port 8080 (if no parameter is followed, port 4000 will be used):
-    
+
     $ mayuki --server 8080
 
 The current directory is considered as the "main" directory of the wiki.
 
 Show the version number of Mayuki:
-    
+
     $ mayuki --version
 
 ### API Usage
 
 Render the current directory and return the output path:
-    
+
     require 'mayuki'
     output_dir = Mayuki::mayuki
 
 Or render a specified directory:
-    
+
     Mayuki::mayuki("mysite/")
 
 The processed directory is considered as the "main" directory of the wiki.
@@ -175,7 +177,7 @@ Default configuration:
 ### Syntax Highlighting
 
 Suppose you have a `test.rb` source file in the same directory with the Markdown file. Then include a line in the Markdown text:
-    
+
 \{\{ "test.rb" | src: "ruby" \}\}
 
 This way you "import" the syntax-highlighted source code into this wiki page, using Ruby lexer.
@@ -183,7 +185,7 @@ This way you "import" the syntax-highlighted source code into this wiki page, us
 The string parameter specifies the name of lexer. It's the same as the short name used in Pygments (Check [here](http://pygments.org/docs/lexers) for the complete list).
 
 Without specifying a language lexer, you may just use:
-    
+
 \{\{ "test.rb" | code \}\}
 
 And let Pygments decide itself which lexer to use by filename patterns.
