@@ -1,4 +1,4 @@
-**[OBSOLETE] As of 1 Feb 2016, this project is unmaintained. I'm working on a new project [soimort/kyoka](https://github.com/soimort/kyoka) which will (hopefully) replace Mayuki.**
+**[OBSOLETE] As of 1 Feb 2016, this project is unmaintained. I'm working on a new project [soimort/pancake](https://github.com/soimort/pancake) which will replace Mayuki.**
 
 # Mayuki
 
